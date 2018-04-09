@@ -30,10 +30,8 @@
 			<li class="list-group-item third">Humidity: <span></span></li>
 			<li class="list-group-item fourth">Wind speed: <span></span></li>
 		</ul>
-		<div id="info">
-			<h3>Temp :<span></span></h3>
-		</div>
-		<div>
+		
+		<div style="margin-top: 2em">
 			<h3>Forecast for five days</h3>
 
 			<table class="table">
@@ -46,27 +44,13 @@
 						<th scope="col">Wind speed</th>
 					</tr>
 				</thead>
-				<tbody>
-					<?php for($i=0;$i<5;$i++) {?>
-					<tr>
-						<th scope="row" id="<?php echo"$i" ?>"></th>
-						<td class="<?php echo"$i" ?>"></td>
-						<td class="<?php echo"$i" ?>"></td>
-						<td class="<?php echo"$i" ?>"></td>
-						<td class="<?php echo"$i" ?>"></td>
-					</tr>
+				<tbody class="content">
+					
 
-					<?php } ?>
+					
 					
 				</tbody>
 			</table>
-
-
-
-			
-
-
-
 		</div>
 	</div>
 
@@ -97,16 +81,33 @@
 				"http://api.openweathermap.org/data/2.5/forecast?q="+ search +"&appid="+ APIkey,
 				function(data) {
 					// 调用APYI里的json数据main.temp
+					
+					// 	var j = 0;
+					
 					for (var i=4; i < data.list.length;i=i+8) {
-						var j = 0;
-						$('th:first-child').text(data.list[i].dt_txt);
-						console.log(data.list[i].weather[0].main);
-						console.log(data.list[i].main.temp);
-						console.log(data.list[i].main.humidity);
-						console.log(data.list[i].wind.speed);
-						j++;
-						
+						var date = data.list[i].dt_txt.substr(0,10);
+						var weather = data.list[i].weather[0].main;
+						var temp = data.list[i].main.temp;
+						var humidity = data.list[i].main.humidity;
+						var wind = data.list[i].wind.speed;
+
+						var html = 
+						`
+						<tr>
+							<th scope="row">` +date+ `</th>
+							<td>` +weather+ `</td>
+							<td>` +temp+ `</td>
+							<td>` +humidity+ `</td>
+							<td>` +wind+ `</td>
+						</tr>
+						`;
+
+						$(".content").append(html);
+
+
 					}
+					
+
 					
 
 				}
