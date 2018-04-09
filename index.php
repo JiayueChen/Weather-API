@@ -100,11 +100,10 @@
 					for (var i=4; i < data.list.length;i=i+8) {
 						var j = 0;
 						$('th:first-child').text(data.list[i].dt_txt);
-						console.log(data.list[i].main.temp);
-
 						console.log(data.list[i].weather[0].main);
-						console.log(data.list[i].weather[0].description);
+						console.log(data.list[i].main.temp);
 						console.log(data.list[i].main.humidity);
+						console.log(data.list[i].wind.speed);
 						j++;
 						
 					}
