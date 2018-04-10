@@ -39,8 +39,8 @@
 					<tr>
 						<th scope="col">Date</th>
 						<th scope="col">Weather</th>
-						<th scope="col">Temp</th>
-						<th scope="col">humidity</th>
+						<th scope="col">Temp(F)</th>
+						<th scope="col">Humidity</th>
 						<th scope="col">Wind speed</th>
 					</tr>
 				</thead>
@@ -62,6 +62,7 @@
 	
 	<script type="text/javascript">
 		function searchWeather() {
+			$(".content").text("");
 			var search = $('#city').val();
 			var APIkey = "e0966d9179f54a61535459a026ada621";
 			$.get(
@@ -104,8 +105,8 @@
 
 						$(".content").append(html);
 
-
 					}
+
 					
 
 					
